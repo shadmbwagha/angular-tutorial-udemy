@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductsService } from './products.service';
 
 @Component({
@@ -6,16 +6,22 @@ import { ProductsService } from './products.service';
   templateUrl: './products.component.html',
 
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
   productName : any;
-  products = ['shad23', 'shad22']
-  isDisabled = true
+  products = [''];
+  isDisabled = true;
 
   constructor(private productsService: ProductsService ){
+    this.products = this.productsService.getProduct();
     setTimeout(()=>{
       //this.productName = "shad22";
       this.isDisabled = !this.isDisabled;
+
     }, 3000);
+  }
+
+  ngOnInit(): void {
+      
   }
 
   addProduct(){
