@@ -1,3 +1,5 @@
-<input *ngIf='!isDisabled' type="text" [(ngModel)]="productName ">
-<button *ngIf='!isDisabled' (click)="addProduct()">Add a product</button>
+<form (ngSubmit) = "onAddProduct(f)" #f='ngForm'>
+  <input type="text" ngModel name="productName" required>
+  <button (click)="addProduct()" type="submit">Add a product</button>
+</form>
 <app-product (onProductClicked)='onRemoveProduct(product)' *ngFor="let product of products" [productName] = 'product'>{{ product }}<app-product>

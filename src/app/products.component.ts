@@ -18,9 +18,14 @@ export class ProductsComponent {
   }
 
   addProduct(){
-    this.products.push(this.productName);
+    //this.products.push(this.productName);
   }
   onRemoveProduct(productName: string){
     this.products = this.products.filter(p => p !== productName);
+  }
+  onAddProduct(form: any){
+    if(form.valid)
+      this.products.push(form.value.productName);
+    //console.log(form)
   }
 }
