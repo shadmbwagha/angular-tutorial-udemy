@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductsService } from './products.service';
 
 @Component({
   selector: 'app-products',
@@ -10,7 +11,7 @@ export class ProductsComponent {
   products = ['shad23', 'shad22']
   isDisabled = true
 
-  constructor(){
+  constructor(private productsService: ProductsService ){
     setTimeout(()=>{
       //this.productName = "shad22";
       this.isDisabled = !this.isDisabled;
@@ -25,7 +26,8 @@ export class ProductsComponent {
   }
   onAddProduct(form: any){
     if(form.valid)
-      this.products.push(form.value.productName);
+      this.productsService.addProduct(form.value.productName)
+      //this.products.push(form.value.productName);
     //console.log(form)
   }
 }
